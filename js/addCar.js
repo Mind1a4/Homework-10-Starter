@@ -29,5 +29,36 @@ carForm.addEventListener("submit", (event) => {
 
   if (!newCar.name) {
     showError("nameError", "Car name is required");
+  } else {
+    clearError("nameError");
   }
+
+  if (!newCar.type) {
+    showError("typeError", "Car type is required");
+  } else {
+    clearError("typeError");
+  }
+
+  if (!newCar.fuel) {
+    showError("fuelError", "Fuel capacity is required");
+  } else {
+    clearError("fuelError");
+  }
+
+  if (!newCar.capacity || isNaN(newCar.capacity) || newCar.capacity <= 0) {
+    showError("capacityError", "Valid capacity is required");
+  } else {
+    clearError("capacityError");
+  }
+
+  if (!newCar.price || isNaN(newCar.price) || newCar.price <= 0) {
+    showError("priceError", "Valid price is required");
+  } else {
+    clearError("priceError");
+  }
+
+  const category = document.getElementById("category").value;
+  const url = `https://67adef939e85da2f020bc6e2.mockapi.io/${category}`;
+
+  if (!valid) return; // Stop submission if errors exist
 });
