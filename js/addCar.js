@@ -58,7 +58,22 @@ carForm.addEventListener("submit", (event) => {
   }
 
   const category = document.getElementById("category").value;
+  //                                                      popularCars
+  //                                                     recommendCars
   const url = `https://67adef939e85da2f020bc6e2.mockapi.io/${category}`;
 
-  if (!valid) return; // Stop submission if errors exist
+  if (!valid) return;
+
+  fetch(url, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(newCar),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      alert("Car Added Succesfuly");
+      console.log(data);
+      document.getElementById("carForm").reset();
+    })
+    .catch((error) => console.log(error));
 });
